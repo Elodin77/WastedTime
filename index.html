@@ -7,6 +7,8 @@
     <h1>Wasted Time</h1>
   </head>
   <body>
+    <label for="country_code">Country Code: </label>
+    <input type="text" id="country_code" name="country_code">
     <h3>Current Schedule</h3>
     <label for="current_bed_time">What time do you go to bed: </label>
     <input type="time" id="current_bed_time" name="current_bed_time"
@@ -15,9 +17,6 @@
     <label for="current_wake_time">What time do you wake up: </label>
     <input type="time" id="current_wake_time" name="current_wake_time"
     min="00:00" max="24:00" required>
-    <br>
-    <label for="fixed_wastage">How many hours have you wasted: </label>
-    <input type="number" id="fixed_wastage" name="fixed_wastage" required>
     <br>
 
     <h3>New Schedule</h3>
@@ -33,6 +32,8 @@
     <h3>Saved Time</h3>
     <p>You will save <span id="saved_hours" style="color:blue">---</span> hours every year</p>
     <p>You will have <span id="saved_days" style="color:blue">---</span> more days every year</p>
-    <p>Version: 0.0.1</p>
+    <p>You will live <span id="saved_years" style="color:blue">---</span> more years in your life</p>
+    <p>Version: 0.0.2</p>
+    <small>This website uses WorldBank data for <span id="country">---</span> in <span id="year">---</span></small>
   </body>
 </html>

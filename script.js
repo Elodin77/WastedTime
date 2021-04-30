@@ -19,7 +19,8 @@ function time_to_hours(time) {
   return hours;
 }
 
-function calc_saved_time() {
+function update() {
+  // Makes calculations based on inputs and updates the webpage.
   try {
     var current_sleep = time_diff(document.getElementById("current_bed_time").value,
     document.getElementById("current_wake_time").value);
@@ -31,12 +32,33 @@ function calc_saved_time() {
     if (saved_hours != "NaN:NaN") {
       document.getElementById("saved_hours").innerHTML = (Math.round(time_to_hours(saved_hours)*365)).toString();
       document.getElementById("saved_days").innerHTML = (Math.round(time_to_hours(saved_hours)*365/(24.0-time_to_hours(current_sleep)))).toString();
+      try {
+        // Calculate the saved_years by getting life expectancy from WorldBank.
+        var country_code = document.getElementById("country_code").value;
+        var request = new XMLHttpRequest();
+        request.open("GET", 'http://api.worldbank.org/v2/country/'+country_code+'/indicator/SP.DYN.LE00.IN?mrnev=1', true);
+        request.responseType = 'document';
+        request.overrideMimeType('text/xml');
+        request.onload = function () {
+          if (request.readyState === request.DONE) {
+            if (request.status === 200) {
+              var xml = request.responseXML;
+              document.getElementById("year").innerHTML = xml.getElementsByTagName("date")[0];
+              document.getElementById("country").innerHTML = xml.getElementsByTagName("country")[0];
+              document.getElementById("saved_years").innerHTML = saved_hours*parseFloat(xml.getElementsByTagName("value")[0])/24/365;
+            }
+          }
+        };
+        request.send(null);
+      } catch (err) {
+        document.getElementById("saved_years").innerHTML = "---"
+      }
     }
   } catch (err) {
-    document.getElementById("saved_time").innerHTML = "---INPUT VALUES ABOVE---";
+    document.getElementById("saved_time").innerHTML = "---";
   }
 
 }
 
 
-setInterval(calc_saved_time, 1000);
+setInterval(update, 1000);
