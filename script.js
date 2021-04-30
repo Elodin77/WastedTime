@@ -43,9 +43,9 @@ function update() {
           if (request.readyState === request.DONE) {
             if (request.status === 200) {
               var xml = request.responseXML;
-              document.getElementById("year").innerHTML = xml.getElementsByTagName("date")[0];
-              document.getElementById("country").innerHTML = xml.getElementsByTagName("country")[0];
-              document.getElementById("saved_years").innerHTML = saved_hours*parseFloat(xml.getElementsByTagName("value")[0])/24/365;
+              document.getElementById("year").innerHTML = xml.getElementsByTagName("date")[0].childNodes[0].nodeValue;
+              document.getElementById("country").innerHTML = xml.getElementsByTagName("country")[0].childNodes[0].nodeValue;
+              document.getElementById("saved_years").innerHTML = saved_hours*parseFloat(xml.getElementsByTagName("value")[0].childNodes[0].nodeValue)/24/365;
             }
           }
         };
