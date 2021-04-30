@@ -48,6 +48,12 @@ function update() {
   try {
     var country_code = document.getElementById("country_code").value;
     var request = new XMLHttpRequest();
+    request.on('error', function(e) {
+      console.error(e);
+      document.getElementById("year").innerHTML = "XXX";
+      document.getElementById("country").innerHTML = "XXX";
+      document.getElementById("saved_years").innerHTML = "XXX";
+    });
     request.open("GET", 'https://api.worldbank.org/v2/country/'+country_code+'/indicator/SP.DYN.LE00.IN?mrnev=1', true);
     request.responseType = 'document';
     request.overrideMimeType('text/xml');
@@ -84,6 +90,8 @@ function update() {
     };
     request.send(null);
   } catch (err) {
+    document.getElementById("year").innerHTML = "XXX";
+    document.getElementById("country").innerHTML = "XXX";
     document.getElementById("saved_years").innerHTML = "XXX";
   }
 
