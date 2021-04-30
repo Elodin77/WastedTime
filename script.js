@@ -1,16 +1,3 @@
-function calc_saved_time() {
-  var current_sleep = time_diff(document.getElementById("current_bed_time").value,
-  document.getElementById("current_wake_time").value);
-
-  var new_sleep = time_diff(document.getElementById("new_bed_time").value,
-  document.getElementById("new_wake_time").value);
-
-  var saved_hours = (time_to_hours(new_sleep)<time_to_hours(current_sleep) ?
-  time_diff(new_sleep,current_sleep) : time_diff(current_sleep,new_sleep));
-
-  document.getElementById("saved_time").value = saved_hours.toString();
-
-}
 function time_diff(start, end) {
   start = start.split(":");
   end = end.split(":");
@@ -29,5 +16,19 @@ function time_to_hours(time) {
   hours += time.split(":")[1]/60.0;
   return hours;
 }
+
+function calc_saved_time() {
+  var current_sleep = time_diff(document.getElementById("current_bed_time").value,
+  document.getElementById("current_wake_time").value);
+
+  var new_sleep = time_diff(document.getElementById("new_bed_time").value,
+  document.getElementById("new_wake_time").value);
+
+  var saved_hours = (time_to_hours(new_sleep) < time_to_hours(current_sleep) ? time_diff(new_sleep,current_sleep) : time_diff(current_sleep,new_sleep));
+
+  document.getElementById("saved_time").value = saved_hours.toString();
+
+}
+
 
 setInterval(function() {try{calc_saved_time();}catch(err){}}, 1000);
