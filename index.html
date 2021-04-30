@@ -4,15 +4,34 @@
     <title>Wasted Time</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <h1>Wasted Time</h1>
   </head>
   <body>
-    <label for="sleep_time">What time do you go to sleep: </label>
-    <input type="time" id="sleep_time" name="sleep_time"
+    <h3>Current Schedule</h3>
+    <label for="current_bed_time">What time do you go to bed: </label>
+    <input type="time" id="current_bed_time" name="current_bed_time"
     min="00:00" max="24:00" required>
-    <label for="wake_time">What time do you go to wake up: </label>
-    <input type="time" id="wake_time" name="wake_time"
+    <br>
+    <label for="current_wake_time">What time do you wake up: </label>
+    <input type="time" id="current_wake_time" name="current_wake_time"
     min="00:00" max="24:00" required>
+    <br>
+    <label for="fixed_wastage">How many hours have you wasted: </label>
+    <input type="number" id="fixed_wastage" name="fixed_wastage" required>
+    <br>
 
+    <h3>New Schedule</h3>
+    <label for="new_bed_time">What time will you go to bed: </label>
+    <input type="time" id="new_bed_time" name="new_bed_time"
+    min="00:00" max="24:00" required>
+    <br>
+    <label for="new_wake_time">What time will you wake up: </label>
+    <input type="time" id="new_wake_time" name="new_wake_time"
+    min="00:00" max="24:00" required>
+    <br>
+
+    <h3>Saved Time</h3>
+    <p id="saved_time">---INPUT VALUES ABOVE---</p>
 
   </body>
 </html>
