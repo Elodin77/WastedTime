@@ -5,7 +5,7 @@ function calc_saved_time() {
   var new_sleep = time_diff(document.getElementById("new_bed_time").value,
   document.getElementById("new_wake_time").value);
 
-  double saved_hours = (time_to_hours(new_sleep)<time_to_hours(current_sleep) ?
+  var saved_hours = (time_to_hours(new_sleep)<time_to_hours(current_sleep) ?
   time_diff(new_sleep,current_sleep) : time_diff(current_sleep,new_sleep));
 
   document.getElementById("saved_time").value = saved_hours.toString();
@@ -25,7 +25,7 @@ function time_diff(start, end) {
 }
 
 function time_to_hours(time) {
-  double hours = time.split(":")[0];
+  var hours = time.split(":")[0];
   hours += time.split(":")[1]/60.0;
   return hours;
 }
