@@ -66,7 +66,7 @@ function update() {
             document.getElementById("country").innerHTML = "---"
           }
 
-          if ((typeof(saved_hours) !== 'undefined' || saved_hours != "NaN:NaN")&&values.length != 0) {
+          if (typeof(saved_hours) !== 'undefined' && saved_hours != "NaN:NaN" && values.length != 0) {
             document.getElementById("saved_years").innerHTML = time_to_hours(saved_hours)*parseFloat(values[0].childNodes[0].nodeValue)/24;
           } else {
             document.getElementById("saved_years").innerHTML = "---";
@@ -76,6 +76,10 @@ function update() {
           document.getElementById("country").innerHTML = "XXX";
           document.getElementById("saved_years").innerHTML = "XXX";
         }
+      } else {
+        document.getElementById("year").innerHTML = "XXX";
+        document.getElementById("country").innerHTML = "XXX";
+        document.getElementById("saved_years").innerHTML = "XXX";
       }
     };
     request.send(null);
