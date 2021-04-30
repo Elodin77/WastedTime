@@ -32,15 +32,3 @@ div {
   display: block;
   color: red;
 }
-/* Mobile Screens */
-@media only screen and (max-width: 768px) {
-    .hours_details {
-        display: block;
-    }
-    .days_details {
-      display: block;
-    }
-    .years_details {
-      display:block;
-    }
-}
