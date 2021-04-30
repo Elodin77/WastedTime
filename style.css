@@ -10,6 +10,14 @@ div {
   font-size: 16px;
 }
 
+.positive {
+  border-color: green;
+}
+.negative {
+  border-color: red;
+}
+
+
 .hours_details {
   display: none;
 }
