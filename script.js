@@ -30,4 +30,4 @@ function time_to_hours(time) {
   return hours;
 }
 
-setInterval(function() {try{calc_saved_time;}catch(err){}}, 1000);
+setInterval(function() {try{calc_saved_time();}catch(err){}}, 1000);
