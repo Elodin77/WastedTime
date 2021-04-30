@@ -13,6 +13,7 @@ div {
 .hours_details {
   display: none;
 }
+
 .hours:hover + .hours_details {
   display: block;
   color: red;
@@ -30,4 +31,16 @@ div {
 .years:hover + .years_details {
   display: block;
   color: red;
+}
+/* Mobile Screens */
+@media only screen and (max-width: 768px) {
+    .hours_details {
+        display: block;
+    }
+    .days_details {
+      display: block;
+    }
+    .years_details {
+      display:block;
+    }
 }
