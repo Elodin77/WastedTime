@@ -11,10 +11,10 @@ div {
 }
 
 .positive {
-  border-color: green;
+  color: green;
 }
 .negative {
-  border-color: red;
+  color: red;
 }
 
 

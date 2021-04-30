@@ -30,7 +30,7 @@ function update() {
     var new_sleep = time_diff(document.getElementById("new_bed_time").value,
     document.getElementById("new_wake_time").value);
 
-    var saved_hours = (time_to_hours(new_sleep) < time_to_hours(current_sleep) ? time_diff(new_sleep,current_sleep) : "-"+time_diff(current_sleep,new_sleep));
+    var saved_hours = (time_to_hours(new_sleep) < time_to_hours(current_sleep) ? "+"+time_diff(new_sleep,current_sleep) : "-"+time_diff(current_sleep,new_sleep));
 
     if (saved_hours != "NaN:NaN") {
       saved_hours_num = time_to_hours(saved_hours);
