@@ -7,8 +7,9 @@ function time_diff(start, end) {
   var hours = Math.floor(diff / 1000 / 60 / 60);
   diff -= hours * 1000 * 60 * 60;
   var minutes = Math.floor(diff / 1000 / 60);
-  hours = Math.abs(hours);
-  minutes = Math.abs(minutes);
+  if (hours < 0) {
+    hours += 24;
+  }
   return (hours < 9 ? "0" : "") + hours + ":" + (minutes < 9 ? "0" : "") + minutes;
 }
 
@@ -28,7 +29,7 @@ function calc_saved_time() {
 
     var saved_hours = (time_to_hours(new_sleep) < time_to_hours(current_sleep) ? time_diff(new_sleep,current_sleep) : time_diff(current_sleep,new_sleep));
 
-    document.getElementById("saved_time").innerHTML = saved_hours.toString();
+    document.getElementById("saved_time").innerHTML = time_to_hours(saved_hours).toString();
   } catch (err) {
     document.getElementById("saved_time").innerHTML = "---INPUT VALUES ABOVE---";
   }
