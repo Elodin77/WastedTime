@@ -48,7 +48,7 @@ function update() {
   try {
     var country_code = document.getElementById("country_code").value;
     var request = new XMLHttpRequest();
-    request.on('error', function(e) {
+    request.addEventListener('error', function(e) {
       console.error(e);
       document.getElementById("year").innerHTML = "XXX";
       document.getElementById("country").innerHTML = "XXX";
