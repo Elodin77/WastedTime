@@ -32,7 +32,7 @@ function update() {
 
     var saved_hours = (time_to_hours(new_sleep) < time_to_hours(current_sleep) ? time_diff(new_sleep,current_sleep) : time_diff(current_sleep,new_sleep));
     if (saved_hours != "NaN:NaN") {
-      document.getElementById("saved_hours").innerHTML = (Math.round(time_to_hours(saved_hours)*365)).toString();
+      document.getElementById("saved_hours").innerHTML = (Math.round(time_to_hours(saved_hours))).toString();
       document.getElementById("saved_days").innerHTML = (Math.round(time_to_hours(saved_hours)*365/(24.0-time_to_hours(current_sleep)))).toString();
     } else {
       document.getElementById("saved_hours").innerHTML = "---";
