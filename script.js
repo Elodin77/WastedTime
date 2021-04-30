@@ -45,7 +45,7 @@ function update() {
               var xml = request.responseXML;
               document.getElementById("year").innerHTML = xml.getElementsByTagName("wb:date")[0].childNodes[0].nodeValue;
               document.getElementById("country").innerHTML = xml.getElementsByTagName("wb:country")[0].childNodes[0].nodeValue;
-              document.getElementById("saved_years").innerHTML = saved_hours*parseFloat(xml.getElementsByTagName("wb:value")[0].childNodes[0].nodeValue)/24/365;
+              document.getElementById("saved_years").innerHTML = time_to_hours(saved_hours)*parseFloat(xml.getElementsByTagName("wb:value")[0].childNodes[0].nodeValue)/24;
             }
           }
         };
