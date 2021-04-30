@@ -21,6 +21,8 @@ function time_to_hours(time) {
 
 function update() {
   // Makes calculations based on inputs and updates the webpage.
+
+  // Calculate the saved_hours and saved_days from user input
   try {
     var current_sleep = time_diff(document.getElementById("current_bed_time").value,
     document.getElementById("current_wake_time").value);
@@ -32,27 +34,6 @@ function update() {
     if (saved_hours != "NaN:NaN") {
       document.getElementById("saved_hours").innerHTML = (Math.round(time_to_hours(saved_hours)*365)).toString();
       document.getElementById("saved_days").innerHTML = (Math.round(time_to_hours(saved_hours)*365/(24.0-time_to_hours(current_sleep)))).toString();
-      try {
-        // Calculate the saved_years by getting life expectancy from WorldBank.
-        var country_code = document.getElementById("country_code").value;
-        var request = new XMLHttpRequest();
-        request.open("GET", 'https://api.worldbank.org/v2/country/'+country_code+'/indicator/SP.DYN.LE00.IN?mrnev=1', true);
-        request.responseType = 'document';
-        request.overrideMimeType('text/xml');
-        request.onload = function () {
-          if (request.readyState === request.DONE) {
-            if (request.status === 200) {
-              var xml = request.responseXML;
-              document.getElementById("year").innerHTML = xml.getElementsByTagName("wb:date")[0].childNodes[0].nodeValue;
-              document.getElementById("country").innerHTML = xml.getElementsByTagName("wb:country")[0].childNodes[0].nodeValue;
-              document.getElementById("saved_years").innerHTML = time_to_hours(saved_hours)*parseFloat(xml.getElementsByTagName("wb:value")[0].childNodes[0].nodeValue)/24;
-            }
-          }
-        };
-        request.send(null);
-      } catch (err) {
-        document.getElementById("saved_years").innerHTML = "XXX";
-      }
     } else {
       document.getElementById("saved_hours").innerHTML = "---";
       document.getElementById("saved_days").innerHTML = "---";
@@ -61,6 +42,29 @@ function update() {
   } catch (err) {
     document.getElementById("saved_hours").innerHTML = "XXX";
     document.getElementById("saved_days").innerHTML = "XXX";
+    document.getElementById("saved_years").innerHTML = "XXX";
+  }
+  // Calculate the saved_years by getting life expectancy from WorldBank.
+  try {
+    var country_code = document.getElementById("country_code").value;
+    var request = new XMLHttpRequest();
+    request.open("GET", 'https://api.worldbank.org/v2/country/'+country_code+'/indicator/SP.DYN.LE00.IN?mrnev=1', true);
+    request.responseType = 'document';
+    request.overrideMimeType('text/xml');
+    request.onload = function () {
+      if (request.readyState === request.DONE) {
+        if (request.status === 200) {
+          var xml = request.responseXML;
+          document.getElementById("year").innerHTML = xml.getElementsByTagName("wb:date")[0].childNodes[0].nodeValue;
+          document.getElementById("country").innerHTML = xml.getElementsByTagName("wb:country")[0].childNodes[0].nodeValue;
+          if (saved_hours != "NaN:NaN") {
+            document.getElementById("saved_years").innerHTML = time_to_hours(saved_hours)*parseFloat(xml.getElementsByTagName("wb:value")[0].childNodes[0].nodeValue)/24;
+          }
+        }
+      }
+    };
+    request.send(null);
+  } catch (err) {
     document.getElementById("saved_years").innerHTML = "XXX";
   }
 
