@@ -31,4 +31,4 @@ function calc_saved_time() {
 }
 
 
-setInterval(function() {try{calc_saved_time();}catch(err){}}, 1000);
+setInterval(calc_saved_time, 1000);
