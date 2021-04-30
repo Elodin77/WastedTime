@@ -30,25 +30,30 @@ function update() {
     var new_sleep = time_diff(document.getElementById("new_bed_time").value,
     document.getElementById("new_wake_time").value);
 
-    var saved_hours = (time_to_hours(new_sleep) < time_to_hours(current_sleep) ? "+"+time_diff(new_sleep,current_sleep) : "-"+time_diff(current_sleep,new_sleep));
+    var saved_hours = (time_to_hours(new_sleep) < time_to_hours(current_sleep) ? time_diff(new_sleep,current_sleep) : "-"+time_diff(current_sleep,new_sleep));
 
-    if (saved_hours != "NaN:NaN") {
+    if (!saved_hours.includes("NaN")) {
       saved_hours_num = time_to_hours(saved_hours);
       if (saved_hours_num > 0) {
         document.getElementById("saved_hours").className = "positive";
         document.getElementById("saved_days").className = "positive";
         document.getElementById("saved_years").className = "positive";
+        document.getElementById("saved_hours").innerHTML = "+"+(Math.round(time_to_hours(saved_hours))).toString();
+        document.getElementById("saved_days").innerHTML = "+"+(Math.round(time_to_hours(saved_hours)*365/(24.0-time_to_hours(current_sleep)))).toString();
       } else if (saved_hours_num < 0) {
         document.getElementById("saved_hours").className = "negative";
         document.getElementById("saved_days").className = "negative";
         document.getElementById("saved_years").className = "negative";
+        document.getElementById("saved_hours").innerHTML = (Math.round(time_to_hours(saved_hours))).toString();
+        document.getElementById("saved_days").innerHTML = (Math.round(time_to_hours(saved_hours)*365/(24.0-time_to_hours(current_sleep)))).toString();
       } else {
         document.getElementById("saved_hours").className = document.getElementById("saved_hours").className.replace(/\bmystyle\b/g, "");
         document.getElementById("saved_days").className = document.getElementById("saved_days").className.replace(/\bmystyle\b/g, "");
         document.getElementById("saved_years").className = document.getElementById("saved_years").className.replace(/\bmystyle\b/g, "");
+        document.getElementById("saved_hours").innerHTML = (Math.round(time_to_hours(saved_hours))).toString();
+        document.getElementById("saved_days").innerHTML = (Math.round(time_to_hours(saved_hours)*365/(24.0-time_to_hours(current_sleep)))).toString();
       }
-      document.getElementById("saved_hours").innerHTML = (Math.round(time_to_hours(saved_hours))).toString();
-      document.getElementById("saved_days").innerHTML = (Math.round(time_to_hours(saved_hours)*365/(24.0-time_to_hours(current_sleep)))).toString();
+
     } else {
       document.getElementById("saved_hours").innerHTML = "---";
       document.getElementById("saved_days").innerHTML = "---";
