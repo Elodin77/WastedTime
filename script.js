@@ -36,7 +36,7 @@ function update() {
         // Calculate the saved_years by getting life expectancy from WorldBank.
         var country_code = document.getElementById("country_code").value;
         var request = new XMLHttpRequest();
-        request.open("GET", 'http://api.worldbank.org/v2/country/'+country_code+'/indicator/SP.DYN.LE00.IN?mrnev=1', true);
+        request.open("GET", 'https://api.worldbank.org/v2/country/'+country_code+'/indicator/SP.DYN.LE00.IN?mrnev=1', true);
         request.responseType = 'document';
         request.overrideMimeType('text/xml');
         request.onload = function () {
