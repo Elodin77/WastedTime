@@ -51,11 +51,17 @@ function update() {
         };
         request.send(null);
       } catch (err) {
-        document.getElementById("saved_years").innerHTML = "---"
+        document.getElementById("saved_years").innerHTML = "XXX";
       }
+    } else {
+      document.getElementById("saved_hours").innerHTML = "---";
+      document.getElementById("saved_days").innerHTML = "---";
+      document.getElementById("saved_years").innerHTML = "---";
     }
   } catch (err) {
-    document.getElementById("saved_time").innerHTML = "---";
+    document.getElementById("saved_hours").innerHTML = "XXX";
+    document.getElementById("saved_days").innerHTML = "XXX";
+    document.getElementById("saved_years").innerHTML = "XXX";
   }
 
 }
