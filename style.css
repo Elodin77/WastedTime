@@ -1,3 +1,25 @@
 span {
   color: blue;
 }
+
+.hours_details {
+  display: none;
+}
+.hours:hover + .hours_details {
+  display: block;
+  color: red;
+}
+.days_details {
+  display: none;
+}
+.days:hover + .days_details {
+  display: block;
+  color: red;
+}
+.years_details {
+  display: none;
+}
+.years:hover + .years_details {
+  display: block;
+  color: red;
+}
