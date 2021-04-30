@@ -55,10 +55,21 @@ function update() {
       if (request.readyState === request.DONE) {
         if (request.status === 200) {
           var xml = request.responseXML;
-          document.getElementById("year").innerHTML = xml.getElementsByTagName("wb:date")[0].childNodes[0].nodeValue;
-          document.getElementById("country").innerHTML = xml.getElementsByTagName("wb:country")[0].childNodes[0].nodeValue;
-          if (typeof(saved_hours) !== 'undefined' && saved_hours != "NaN:NaN") {
-            document.getElementById("saved_years").innerHTML = time_to_hours(saved_hours)*parseFloat(xml.getElementsByTagName("wb:value")[0].childNodes[0].nodeValue)/24;
+          var dates = xml.getElementsByTagName("wb:date");
+          var countries = xml.getElementsByTagName("wb:country");
+          var values = xml.getElementsByTagName("wb:value");
+          if (dates.length != 0 && countries.length != 0) {
+            document.getElementById("year").innerHTML = dates[0].childNodes[0].nodeValue;
+            document.getElementById("country").innerHTML = countries[0].childNodes[0].nodeValue;
+          } else {
+            document.getElementById("year").innerHTML = "---";
+            document.getElementById("country").innerHTML = "---"
+          }
+
+          if ((typeof(saved_hours) !== 'undefined' || saved_hours != "NaN:NaN")&&values.length != 0) {
+            document.getElementById("saved_years").innerHTML = time_to_hours(saved_hours)*parseFloat(values[0].childNodes[0].nodeValue)/24;
+          } else {
+            document.getElementById("saved_years").innerHTML = "---";
           }
         } else {
           document.getElementById("year").innerHTML = "XXX";
