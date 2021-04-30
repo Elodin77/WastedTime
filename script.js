@@ -60,6 +60,10 @@ function update() {
           if (typeof(saved_hours) !== 'undefined' && saved_hours != "NaN:NaN") {
             document.getElementById("saved_years").innerHTML = time_to_hours(saved_hours)*parseFloat(xml.getElementsByTagName("wb:value")[0].childNodes[0].nodeValue)/24;
           }
+        } else {
+          document.getElementById("year").innerHTML = "XXX";
+          document.getElementById("country").innerHTML = "XXX";
+          document.getElementById("saved_years").innerHTML = "XXX";
         }
       }
     };
