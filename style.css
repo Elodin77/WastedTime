@@ -2,6 +2,11 @@ span {
   color: blue;
 }
 
+div {
+  width: fit-content;
+  height: fit-content;
+}
+
 .hours_details {
   display: none;
 }
