@@ -67,7 +67,7 @@ function update() {
           }
 
           if (typeof(saved_hours) !== 'undefined' && saved_hours != "NaN:NaN" && values.length != 0 && typeof(current_sleep) !== "undefined") {
-            document.getElementById("saved_years").innerHTML = time_to_hours(saved_hours)*365*parseFloat(values[0].childNodes[0].nodeValue)/(24-time_to_hours(current_sleep));
+            document.getElementById("saved_years").innerHTML = Math.round(time_to_hours(saved_hours)*parseFloat(values[0].childNodes[0].nodeValue)/(24-time_to_hours(current_sleep)));
           } else {
             document.getElementById("saved_years").innerHTML = "---";
           }
